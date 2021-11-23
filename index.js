@@ -24,18 +24,16 @@ const pool = new Pool({
 	connectionString
 });
 const avo = avoshopper(pool);
-app.get('/', function(req, res) {
+app.get('/', async function(req, res) {
+	const deals =  await avo.topFiveDeals()
 	res.render('index', {
-		
+		deals
 	});
 });
-// app.get('/avo/deals', async function (req,res){
-//     const deals = await avo.topFiveDeals()
-// //    res.render('index',{
-// // 	   deals
-
-// //    })
-// });
+app.get('/avo/Topdeals', async function (req,res){
+    const deals = await avo.topFiveDeals()
+   res.redirect('/')
+});
 app.get('/avo/deals', async function(req,res){
 	const allShops = await avo.listShops()
 
@@ -48,7 +46,7 @@ app.post('/avo/deals', async function(req,res){
 	const prc = req.body.prc
 	
 	 await avo.createDeal(shopId,qty,prc,)
-	//console.log(shopId)
+	console.log(shopId)
 	//res.redirect('/')
 })
 app.get('/avo/allshop', async function(req,res){

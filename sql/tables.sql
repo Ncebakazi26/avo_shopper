@@ -11,3 +11,4 @@ create table avo_deal (
 	foreign key (shop_id) references shop(id)
 );
 -- dbname= avoshopper
+-- heroku name = avocados-app 
