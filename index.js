@@ -79,11 +79,11 @@ app.get('/avo/allshop', async function(req,res){
 })
 app.post('/avo/add', async function(req,res){
 	try {
-		const shopName = req.body.shop_name
+	const shopName = req.body.shop_name
 	const newShop = await avo.createShop(shopName)
 
-	console.log(newShop)
 	res.redirect('/')
+
 	} catch (error) {
 		
 	}
