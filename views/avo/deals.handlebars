@@ -1,0 +1,65 @@
+<h1>create new avo deal</h1>
+{{!-- <form action="/avo/deals" method="POST">
+
+<select name="Shops">
+  <option value="{{id}}">{{name}}</option>
+</select>
+  <label for="fname">Quantity:</label>
+  <input type="text" id="Qty" name="Qty"><br><br>
+  <label for="lname">Price:</label>
+  <input type="text" id="prc" name="prc"><br><br>
+</form> --}}
+
+<form action="/avo/deals" method="post">
+	<div class="m1">
+		<label for="qty" class="w-7" >Shop</label>
+		<select name="avo_id" class="mt-1 p-1" id="">
+			<option value="shop_id">Select shop</option>
+			{{#each allShops}}
+			<option value="{{id}}">{{name}} </option>
+			
+			{{/each}}
+		</select>
+	</div>
+	<div class="m1">
+		<label for="qty" class="w-7">Quantity</label>
+		<input type="number" name="qty" class="w-3 mt-1 p-1">
+        <label for="qty" class="w-7">Price</label>
+		<input type="decimal" name="prc"  class="w-3 mt-1 p-1">
+	</div>
+	<div class="m1">
+		<input type="submit" class="mt-1 p-1">
+	</div>
+
+  
+
+	<hr>
+
+
+  </form>
+	{{!-- <table>
+		<tr>
+			<th>Fruit</th>
+			<th>Qty</th>
+			<th>Total cost</th>
+		</tr>
+		{{#each basketItems}}
+		<tr>
+			<td>{{name}}</td>
+			<td>{{qty}}</td>
+			<td>{{total_price}}</td>
+		</tr>
+		{{/each}}
+	</table> --}}
+
+
+
+ {{!-- {{!-- <div class="d-md-flex ">
+    {{#each days}} 
+    <li class="btn bg-light m-4"> <input type="checkbox"  name="day" value="{{day_id}}">
+      <label> {{shift_days}}</label><br>
+    </li>
+    {{/each}} --}}
+
+    {{!-- </div> --}}
+  {{!-- <input class="btn bg-success" type="submit" value="submit" name="submit"> --}}
