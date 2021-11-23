@@ -12,3 +12,5 @@ create table avo_deal (
 );
 -- dbname= avoshopper
 -- heroku name = avocados-app 
+
+-- https://github.com/Ncebakazi26/avo_shopper
