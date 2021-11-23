@@ -44,10 +44,11 @@ app.post('/avo/deals', async function(req,res){
 	const shopId = req.params.id
 	const qty = req.body.qty
 	const prc = req.body.prc
+	const shop = await avo.listShops(shopId)
 	
 	 await avo.createDeal(shopId,qty,prc,)
 	console.log(shopId)
-	//res.redirect('/')
+	res.redirect('/')
 })
 app.get('/avo/allshop', async function(req,res){
 	const allShops = await avo.listShops()
