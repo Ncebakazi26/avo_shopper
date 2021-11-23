@@ -4,7 +4,7 @@ const avoshopper = require('./avo-shopper')
 const pg = require("pg");
 const Pool = pg.Pool;
 const app = express();
-const PORT =  process.env.PORT || 3019;
+
 
 // enable the req.body object - to allow us to use HTML forms
 app.use(express.json());
@@ -21,8 +21,12 @@ app.set('view engine', 'handlebars');
 let counter = 0;
 const connectionString = process.env.DATABASE_URL || 'postgresql://codex:pg123@localhost:5432/avoshopper';
 const pool = new Pool({
-	connectionString
+    connectionString,
+    ssl: {
+        rejectUnauthorized: false
+    }
 });
+
 const avo = avoshopper(pool);
 app.get('/', async function(req, res) {
 	const deals =  await avo.topFiveDeals()
@@ -97,6 +101,7 @@ app.get('/avo/add', async function(req,res){
 
 
 // start  the server and start listening for HTTP request on the PORT number specified...
+const PORT =  process.env.PORT || 3019;
 app.listen(PORT, function() {
 	console.log(`AvoApp started on port ${PORT}`)
 });
