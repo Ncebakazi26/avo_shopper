@@ -1,5 +1,5 @@
 create table shop(
-	id serial not null primary key,
+	id serial not null primary key unique,
 	name text not null unique
 );
 
