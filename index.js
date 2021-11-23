@@ -31,41 +31,67 @@ app.get('/', async function(req, res) {
 	});
 });
 app.get('/avo/Topdeals', async function (req,res){
-    const deals = await avo.topFiveDeals()
-   res.redirect('/')
+	try {
+		const deals = await avo.topFiveDeals()
+		res.redirect('/')
+	} catch (error) {
+		console.log(error)
+	}
+    
+  
 });
 app.get('/avo/deals', async function(req,res){
-
+try {
 	const allShops = await avo.listShops()
+	res.render('avo/deals',{allShops} );
+} catch (error) {
+	
+}
 
-res.render('avo/deals',{allShops} );
 
 });
 app.post('/avo/deals', async function(req,res){
-	const shopId = req.body.avo_id
+	try {
+		const shopId = req.body.avo_id
 	const qty = req.body.qty
 	const prc = req.body.prc
     await avo.createDeal(shopId,qty,prc)
 	
 	res.redirect('/')
+	} catch (error) {
+		
+	}
 })
 app.get('/avo/allshop', async function(req,res){
-	const allShops = await avo.listShops()
+	try {
+		const allShops = await avo.listShops()
 	res.render('avo/allshop',{
 		allShops
 	})
+	} catch (error) {
+		
+	}
 	
 })
 app.post('/avo/add', async function(req,res){
-	const shopName = req.body.shop_name
+	try {
+		const shopName = req.body.shop_name
 	const newShop = await avo.createShop(shopName)
 
 	console.log(newShop)
 	res.redirect('/')
+	} catch (error) {
+		
+	}
 	
 })
 app.get('/avo/add', async function(req,res){
-	res.render('avo/add');
+	try {
+		res.render('avo/add');
+	} catch (error) {
+		
+	}
+	
 	
 	});
 
