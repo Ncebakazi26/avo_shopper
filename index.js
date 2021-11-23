@@ -35,19 +35,18 @@ app.get('/avo/Topdeals', async function (req,res){
    res.redirect('/')
 });
 app.get('/avo/deals', async function(req,res){
+
 	const allShops = await avo.listShops()
 
 res.render('avo/deals',{allShops} );
 
 });
 app.post('/avo/deals', async function(req,res){
-	const shopId = req.params.id
+	const shopId = req.body.avo_id
 	const qty = req.body.qty
 	const prc = req.body.prc
-	const shop = await avo.listShops(shopId)
+    await avo.createDeal(shopId,qty,prc)
 	
-	 await avo.createDeal(shopId,qty,prc,)
-	console.log(shopId)
 	res.redirect('/')
 })
 app.get('/avo/allshop', async function(req,res){
@@ -55,6 +54,7 @@ app.get('/avo/allshop', async function(req,res){
 	res.render('avo/allshop',{
 		allShops
 	})
+	
 })
 app.post('/avo/add', async function(req,res){
 	const shopName = req.body.shop_name
